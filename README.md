@@ -10,7 +10,7 @@
 * **التخصص:** مهندس شبكات واتصالات (Telecommunications & Network Engineer)
 * **الهوية والوطن:** ابن فلسطين — مدينة بيت حانون
 * **البريد الإلكتروني:** [athamnahatem05@gmail.com](mailto:athamnahatem05@gmail.com)
-* **الواتساب للتواصل:** [213774088297+](https://wa.me/213774088297)
+* **الواتساب للتواصل:** [+213774088297](https://wa.me/213774088297)
 * **حساب GitHub:** [hatem686](https://github.com/hatem686)
 * **المشروع:** AQUADRIVE-AI Core System
 
@@ -20,36 +20,28 @@
 
 ```mermaid
 graph TD
-    %% Custom Styling Definitions
-    classDef comms fill:#0284c7,stroke:#38bdf8,stroke-width:3px,color:#fff;
-    classDef vision fill:#4f46e5,stroke:#818cf8,stroke-width:2px,color:#fff;
-    classDef safety fill:#991b1b,stroke:#f87171,stroke-width:2px,color:#fff;
-    classDef hardware fill:#065f46,stroke:#34d399,stroke-width:2px,color:#fff;
-    classDef tester fill:#334155,stroke:#94a3b8,stroke-width:2px,color:#fff;
-
-    subgraph Perception ["👁️ طبقة الإدراك والرصد (Perception Layer)"]
-        A["📷 vision_node<br/><i>(Computer Vision & AI)</i>"]:::vision
-        B["🔋 battery_health_monitor<br/><i>(Power & Range Check)</i>"]:::vision
+    subgraph Perception ["Perception Layer - طبقة الإدراك"]
+        A["vision_node - AI Vision"]
+        B["battery_health_monitor - Power Status"]
     end
 
-    subgraph Safety ["🛡️ طبقة الحماية والسلامة (Safety Layer)"]
-        E["🗺️ geofence_guard<br/><i>(GPS Geofence Protection)</i>"]:::safety
+    subgraph Safety ["Safety Layer - طبقة الحماية"]
+        E["geofence_guard - GPS Boundary"]
     end
 
-    subgraph CoreEngine ["🌊 النواة المركزية (Core Engine)"]
-        C{"📡 hybrid_comms_node<br/><b>[Dual Communications Switch]</b>"}:::comms
-        D["🧪 sitl_failover_tester<br/><i>(Fault Simulation)</i>"]:::tester
+    subgraph CoreEngine ["Core Engine - النواة المركزية"]
+        C["hybrid_comms_node - Dual Switch"]
+        D["sitl_failover_tester - Simulator"]
     end
 
-    subgraph Execution ["🔗 طبقة التحكم والتحريك (Control & Execution)"]
-        F["🔌 pixhawk_bridge<br/><i>(MAVLink Interface)</i>"]:::hardware
-        G["🕹️ Pixhawk Flight Controller<br/><i>(Hardware Unit)</i>"]:::hardware
+    subgraph Execution ["Control Layer - طبقة التحكم"]
+        F["pixhawk_bridge - MAVLink Interface"]
+        G["Pixhawk Flight Controller"]
     end
 
-    %% Flow Dynamics
-    A -->|1. Obstacle & Path Data| C
-    B -->|2. Battery Failover Alert| C
-    E -->|3. Boundary Breach Warning| C
-    D -.->|Simulated Network Faults| C
-    C ==>|4. Safe Navigation Commands| F
-    F ==>|5. Actuator Signals| G
+    A -->|Obstacle Data| C
+    B -->|Power Status| C
+    E -->|Boundary Guard| C
+    D -.->|Fault Testing| C
+    C -->|Control Commands| F
+    F -->|Pulse Signals| G
