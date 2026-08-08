@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  aquatic_core:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: aquatic_core_system
+    restart: always
+    network_mode: host
+    privileged: true
+    devices:
+      - "/dev/ttyUSB0:/dev/ttyUSB0"
+    environment:
+      - ROS_DOMAIN_ID=42
+      - PYTHONUNBUFFERED=1
+    command: ros2 launch aquatic_comms aquatic_system.launch.py
