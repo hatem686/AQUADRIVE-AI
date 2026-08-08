@@ -19,29 +19,10 @@
 ## 📐 المعمارية الهندسية ومخطط تدفق البيانات (System Architecture Diagram)
 
 ```mermaid
-graph TD
-    subgraph Perception ["Perception Layer - طبقة الإدراك"]
-        A["vision_node - AI Vision"]
-        B["battery_health_monitor - Power Status"]
-    end
-
-    subgraph Safety ["Safety Layer - طبقة الحماية"]
-        E["geofence_guard - GPS Boundary"]
-    end
-
-    subgraph CoreEngine ["Core Engine - النواة المركزية"]
-        C["hybrid_comms_node - Dual Switch"]
-        D["sitl_failover_tester - Simulator"]
-    end
-
-    subgraph Execution ["Control Layer - طبقة التحكم"]
-        F["pixhawk_bridge - MAVLink Interface"]
-        G["Pixhawk Flight Controller"]
-    end
-
-    A -->|Obstacle Data| C
-    B -->|Power Status| C
-    E -->|Boundary Guard| C
-    D -.->|Fault Testing| C
-    C -->|Control Commands| F
-    F -->|Pulse Signals| G
+flowchart LR
+    A[vision_node] -->|Obstacle Data| C[hybrid_comms_node]
+    B[battery_health_monitor] -->|Power Status| C
+    E[geofence_guard] -->|GPS Boundary| C
+    D[sitl_failover_tester] -.->|Fault Test| C
+    C -->|Commands| F[pixhawk_bridge]
+    F -->|MAVLink| G[Pixhawk Controller]
