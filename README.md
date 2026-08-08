@@ -4,21 +4,52 @@
 
 ---
 
-## 📌 أبرز المكونات الهندسية (Core Architecture)
+## 👨‍💻 معلومات المهندس والمطور (Developer Profile)
 
-* 📡 **`hybrid_comms_node`**: وحدة إدارة الاتصال المزدوج (الألياف الضوئية والاتصال اللاسلكي) للتحويل الذكي عند انقطاع الإشارة.
-* 👁️ **`vision_node`**: خوارزميات الرؤية الحاسوبية المعززة بالذكاء الاصطناعي لرصد العوائق وتحديد المسارات المائية.
-* 🔗 **`pixhawk_bridge`**: جسر الربط التنفيذي بين طبقة البرمجيات وحاكم الطيران (Pixhawk) لتنفيذ سيناريوهات الاستعادة الآلية (Auto-Recovery).
-* 🛡️ **`geofence_guard`**: نظام السياج الجغرافي الذكي لحماية المركبة من الانجراف والحرص على بقائها ضمن النطاق الآمن.
-* 🔋 **`battery_health_monitor`**: نظام مراقبة طاقة المركبة والتحكم بالعودة التلقائية إلى نقطة الانطلاق عند انخفاض الشحن.
-* 🧪 **`sitl_failover_tester`**: بيئة محاكاة الأعطال الميدانية لاختبار استجابة النظام وجاهزيته العالية.
+* **الاسم:** حاتم العثامنة (HATEM ATHAMNA)
+* **التخصص:** مهندس شبكات واتصالات (Telecommunications & Network Engineer)
+* **الهوية والوطن:** ابن فلسطين — مدينة بيت حانون
+* **البريد الإلكتروني:** [athamnahatem05@gmail.com](mailto:athamnahatem05@gmail.com)
+* **الواتساب للتواصل:** [213774088297+](https://wa.me/213774088297)
+* **حساب GitHub:** [hatem686](https://github.com/hatem686)
+* **المشروع:** AQUADRIVE-AI Core System
 
 ---
 
-## 🚀 التشغيل المباشر (Quick Start)
+## 📐 المعمارية الهندسية ومخطط تدفق البيانات (System Architecture Diagram)
 
-النظام مهيأ بالكامل للتشغيل المعزول باستخدام `Docker`:
+```mermaid
+graph TD
+    %% Custom Styling Definitions
+    classDef comms fill:#0284c7,stroke:#38bdf8,stroke-width:3px,color:#fff;
+    classDef vision fill:#4f46e5,stroke:#818cf8,stroke-width:2px,color:#fff;
+    classDef safety fill:#991b1b,stroke:#f87171,stroke-width:2px,color:#fff;
+    classDef hardware fill:#065f46,stroke:#34d399,stroke-width:2px,color:#fff;
+    classDef tester fill:#334155,stroke:#94a3b8,stroke-width:2px,color:#fff;
 
-```bash
-# بناء وتشغيل كافة العُقد البرمجية بضغطة واحدة
-docker-compose up --build
+    subgraph Perception ["👁️ طبقة الإدراك والرصد (Perception Layer)"]
+        A["📷 vision_node<br/><i>(Computer Vision & AI)</i>"]:::vision
+        B["🔋 battery_health_monitor<br/><i>(Power & Range Check)</i>"]:::vision
+    end
+
+    subgraph Safety ["🛡️ طبقة الحماية والسلامة (Safety Layer)"]
+        E["🗺️ geofence_guard<br/><i>(GPS Geofence Protection)</i>"]:::safety
+    end
+
+    subgraph CoreEngine ["🌊 النواة المركزية (Core Engine)"]
+        C{"📡 hybrid_comms_node<br/><b>[Dual Communications Switch]</b>"}:::comms
+        D["🧪 sitl_failover_tester<br/><i>(Fault Simulation)</i>"]:::tester
+    end
+
+    subgraph Execution ["🔗 طبقة التحكم والتحريك (Control & Execution)"]
+        F["🔌 pixhawk_bridge<br/><i>(MAVLink Interface)</i>"]:::hardware
+        G["🕹️ Pixhawk Flight Controller<br/><i>(Hardware Unit)</i>"]:::hardware
+    end
+
+    %% Flow Dynamics
+    A -->|1. Obstacle & Path Data| C
+    B -->|2. Battery Failover Alert| C
+    E -->|3. Boundary Breach Warning| C
+    D -.->|Simulated Network Faults| C
+    C ==>|4. Safe Navigation Commands| F
+    F ==>|5. Actuator Signals| G
