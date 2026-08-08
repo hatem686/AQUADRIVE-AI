@@ -1,3 +1,4 @@
+[ 🇵🇸 العربية ](README.md) | [ 🇬🇧 English ](README_EN.md)
 # 🌊 AQUADRIVE-AI Core System
 > **Autonomous Underwater & Surface Vehicle Control Unit**  
 > *نظام هجين ذكي لإدارة الاتصالات والملاحة الذاتية للمركبات المائية*
