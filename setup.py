@@ -27,6 +27,8 @@ setup(
             'pixhawk_bridge = aquatic_comms.pixhawk_bridge:main',
             'sitl_failover_tester = aquatic_comms.sitl_failover_tester:main',
             'vision_node = aquatic_comms.vision_node:main',
+            'geofence_guard = aquatic_comms.geofence_guard:main',
+            'battery_health_monitor = aquatic_comms.battery_health_monitor:main',
         ],
     },
 )
