@@ -26,6 +26,7 @@ setup(
             'hybrid_comms_node = aquatic_comms.hybrid_comms_node:main',
             'pixhawk_bridge = aquatic_comms.pixhawk_bridge:main',
             'sitl_failover_tester = aquatic_comms.sitl_failover_tester:main',
+            'vision_node = aquatic_comms.vision_node:main',
         ],
     },
 )
